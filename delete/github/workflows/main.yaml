@@ -1,0 +1,108 @@
+name: CI/CD- IM UI
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  docker_build_push:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Read version from version.txt
+      uses: jaywcjlove/github-action-read-file@main
+      id: customVersion
+      with:
+        path: version.txt
+        
+    - name: Process version string
+      id: process_version
+      run: |
+        # Fetch the customVersion retrieved from version.txt
+        cv="${{ steps.customVersion.outputs.content }}"
+        # Remove the newline character
+        cv=$(echo "$cv" | tr -d '\n')
+        # Remove all space characters and add run number
+        cv=$(echo "$cv" | tr -d ' ').${{ github.run_number }}
+        # Transfer to github env
+        echo "CUSTOM_VERSION=$cv" >> "$GITHUB_ENV"
+
+    - uses: actions/checkout@v4     
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name: Build and Push Docker Image to Docker Registry
+      uses: mr-smithers-excellent/docker-build-push@v6
+      with:
+        image: intainft/ui-testim-cni-cd
+        tags: ${{ env.CUSTOM_VERSION }}
+        registry: docker.io
+        dockerfile: Dockerfile
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Send mail on failure
+      if: failure()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        secure: true
+        username: ${{ secrets.MAIL_USERNAME }}
+        password: ${{ secrets.MAIL_PASSWORD }}
+        subject: Github Actions Docker Result - Failure
+        to: bharathi.m@intainft.com,narayanan.sp@intainft.com
+        from: Github Actions ${{ secrets.MAIL_USERNAME }}
+        body: ${{ github.job }} job in workflow ${{ github.workflow }} of ${{ github.repository }} has failed.
+
+    - name: Pull the image to VM
+      if: ${{ !env.ACT }}
+      uses: appleboy/ssh-action@v0.1.3
+      with:
+        host: ${{ secrets.SSH_IP }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.SSH_PORT }}
+        script: | 
+          sudo docker stop im-ui || true
+          sudo docker rm im-ui || true
+          sudo docker run -d --name ui -p 81:80 -v /imtestapps/IntainMarkets/uploads:/var/www/html/root_folder/uploads --restart unless-stopped  intainft/ui-testim-cni-cd:${{ env.CUSTOM_VERSION }}
+
+  success:
+    runs-on: ubuntu-latest
+    needs: docker_build_push
+    if: success()
+    steps:
+    - name: Send success email
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        secure: true
+        username: ${{ secrets.MAIL_USERNAME }}
+        password: ${{ secrets.MAIL_PASSWORD }}
+        subject: IM Nodeapp -Deployment success
+        to: bharathi.m@intainft.com,narayanan.sp@intainft.com
+        from: Github Actions ${{ secrets.MAIL_USERNAME }}
+        #body: The Docker image intainft/im-testnetwork-node-app:${{ env.CUSTOM_VERSION }} was successfully built and deployed.
+        body: ${{ github.job }} job in workflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }} 
+        
+  failure:
+    runs-on: ubuntu-latest
+    needs: docker_build_push
+    if: failure()
+    steps:
+    - name: Send failure email
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        secure: true
+        username: ${{ secrets.MAIL_USERNAME }}
+        password: ${{ secrets.MAIL_PASSWORD }}
+        subject: IM Nodeapp - Deployment failure
+        to: bharathi.m@intainft.com,narayanan.sp@intainft.com
+        from: Github Actions ${{ secrets.MAIL_USERNAME }}
+        body: The Docker image intainft/im-testnetwork-node-app:${{ env.CUSTOM_VERSION }} failed to build or deploy.
