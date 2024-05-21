@@ -1,0 +1,28 @@
+{
+    "title":"",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["attributeName","attributeStandardName"],
+    "properties": {
+        "attributeName": {
+            "type": "string",
+            "title": "Name"
+           
+        },
+        "attributeStandardName": {
+            "type": "string",
+            "title": "Standard Name"
+           
+        },
+        "attributeCategory": {
+            "type": "string",
+            "title": "Category",
+            "enum":["Borrower","Loan","Collateral"]
+        },
+        "attributeDisplay": {
+            "type": "boolean",
+            "title": "Display in UI"
+        }
+
+    }
+}

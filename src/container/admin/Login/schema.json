@@ -1,0 +1,16 @@
+{
+    "title":"",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["emailid","password"],
+    "properties": {
+        "emailid": {
+            "type": "string",
+            "title": "Email Address"
+        },
+        "password": {
+            "type": "string",
+            "title": "Password"
+        }
+    }
+}

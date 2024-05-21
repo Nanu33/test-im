@@ -1,0 +1,19 @@
+{
+    "title":"",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "date": {
+            "type": "string",
+            "title": "Date(DD/MM/YY)"
+        },
+        "name": {
+            "type": "string",
+            "title": "Name"
+        },
+        "title": {
+            "type": "string",
+            "title": "Title"
+        }
+    }
+}

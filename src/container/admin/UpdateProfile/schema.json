@@ -1,0 +1,31 @@
+{
+    "title":"",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["username","emailid","password","phoneno","userrole"],
+    "properties": {
+        "username": {
+            "type": "string",
+            "title": "First Name"
+        },
+        "emailid": {
+            "type": "string",
+            "title": "Email Id"
+        },
+        "password": {
+            "type": "string",
+            "title": "Password"
+        },
+        "phoneno": {
+            "type": "string",
+            "title": "Mobile Number"
+        } ,
+        "userrole": {
+            "type": "string",
+            "title": "User Role",
+            "default": "Processor"
+        }
+    }
+}
+
+

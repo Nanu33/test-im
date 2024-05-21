@@ -1,0 +1,43 @@
+{
+    "title":"",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["UserName","FirstName","Password","OrgName","LastName","MobileNumber","Country"],
+    "properties": {
+        "UserName": {
+            "type": "string",
+            "title": "Username"
+           
+        },
+        "FirstName": {
+            "type": "string",
+            "title": "First Name"
+           
+        },
+        "Password": {
+            "type": "string",
+            "title": "password"
+        },
+        "OrgName": {
+            "type": "string",
+            "title": "OrgName",
+            "enum":[],
+            "enumNames":[]
+        },
+        "LastName": {
+            "type": "string",
+            "title": "Last Name"
+           
+        },
+        "MobileNumber": {
+            "type": "string",
+            "title": "Mobile Number"
+        },
+        "Country": {
+            "type": "string",
+            "title": "Country"
+           
+        }
+        
+    }
+}

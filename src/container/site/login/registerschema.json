@@ -1,0 +1,25 @@
+{
+    "title":"",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["UserName","EmailId","OrgName"],
+    "properties": {
+        "UserName": {
+            "type": "string",
+            "title": "Username"
+           
+        },
+        "EmailId": {
+            "type": "string",
+            "title": "Email Id"
+           
+        },
+        "OrgName": {
+            "type": "string",
+            "title": "OrgName",
+            "enum":[],
+            "enumNames":[]
+        }
+        
+    }
+}

@@ -1,0 +1,49 @@
+.imageLeft {
+  background: url(../../../images/loginLeftBg1.png) no-repeat center top !important;
+}
+
+img {
+  max-width: 100%;
+}
+
+.loginbody,
+.loginbody .row,
+.loginbody .row .imageLeft {
+  height: 100vh;
+  background: #FFF;
+}
+
+#profile-img {
+  width: 150px;
+}
+
+#footer {
+  position: fixed;
+  left: 0px;
+  bottom: 10px;
+  width: 100%;
+  color: #fff;
+}
+
+/* #signinbutton{
+  margin-top:27px;
+  color: #048c84 !important;
+  background-color: transparent !important;
+  border:1px solid #048c84 !important;
+width:200px ;
+height:40px
+} */
+.loginbottom{
+  margin-top: 150px !important;
+}
+#powercolor{
+
+    color: #a7a3a3;
+    word-spacing: 1px;
+    font-size: 18px;
+
+}
+#intainlogologin{
+  margin-top: -20px !important;
+height: 40px;
+}

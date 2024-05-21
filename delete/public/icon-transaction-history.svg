@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28.435" height="32.064" viewBox="0 0 28.435 32.064">
+  <g id="exchange" transform="translate(1.893 0.212)">
+    <path id="Path_586" data-name="Path 586" d="M25.4,233.681a2.893,2.893,0,0,1-2.893,2.893H3.619l3.809-3.809L6.064,231.4.609,236.857a.964.964,0,0,0,0,1.364l5.455,5.455,1.364-1.364L3.619,238.5H22.505a4.827,4.827,0,0,0,4.821-4.821v-3.857H25.4Zm0,0" transform="translate(-2.003 -211.973)" fill="#b2d3d3" stroke="#b2d3d3" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.3"/>
+    <path id="Path_587" data-name="Path 587" d="M2.253,9.994A2.893,2.893,0,0,1,5.146,7.1H24.032L20.223,10.91l1.364,1.364,5.455-5.455a.964.964,0,0,0,0-1.364L21.587,0,20.223,1.363l3.809,3.809H5.146A4.827,4.827,0,0,0,.324,9.994v3.857H2.253Zm0,0" transform="translate(-1)" fill="#b2d3d3" stroke="#b2d3d3" stroke-width="0.3"/>
+    <line id="Line_142" data-name="Line 142" x2="11" transform="translate(6.824 13.553)" fill="none" stroke="#b2d3d3" stroke-linecap="round" stroke-width="2.5"/>
+    <path id="Path_588" data-name="Path 588" d="M0,0H6" transform="translate(6.824 18.553)" fill="none" stroke="#b2d3d3" stroke-linecap="round" stroke-width="2.5"/>
+  </g>
+</svg>

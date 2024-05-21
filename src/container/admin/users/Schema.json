@@ -1,0 +1,51 @@
+{
+    "title": "",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "vendor_id",
+        "client_name",
+        "client_group"
+    ],
+    "properties": {
+        "vendor_id": {
+            "type": "string",
+            "title": "Vendor Id"
+        },
+        "vendor_name": {
+            "type": "string",
+            "title": "Vendor Name"
+        },
+        "vendor_group": {
+            "type": "string",
+            "title": "Vendor Group"
+        },
+        "vendor_city": {
+            "type": "string",
+            "title": "Vendor City"
+        },
+        "vendor_country": {
+            "type": "string",
+            "title": "Vendor Country"
+        },
+       
+        "credit_line": {
+            "type": "string",
+            "title": "Credit Line"
+        },
+        
+        "creditLine_date": {
+            "type": "string",
+            "title": "Credit Line Date"
+        },
+       
+        "currency": {
+            "type": "string",
+            "title": "Currency"
+        },
+        "nace": {
+            "type": "string",
+            "title": "NACE"
+        }
+    }
+}
